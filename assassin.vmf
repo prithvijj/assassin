@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "8075"
-	"mapversion" "311"
+	"mapversion" "329"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "311"
+	"mapversion" "329"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -5874,7 +5874,7 @@ entity
 	"locked_sentence" "0"
 	"locked_sound" "0"
 	"min_use_angle" "0.8"
-	"movedir" "0 269 0"
+	"movedir" "0 0 0"
 	"origin" "505 708.61 96"
 	"renderamt" "255"
 	"rendercolor" "255 255 255"
@@ -5886,6 +5886,11 @@ entity
 	"unlocked_sentence" "0"
 	"unlocked_sound" "0"
 	"wait" "2"
+	connections
+	{
+		"OnPressed" "buy_knifeSpendMoneyFromPlayer0-1"
+		"OnPressed" "clientfunctionCommandgive weapon_knife; say Knife has been added0-1"
+	}
 	solid
 	{
 		"id" "13368"
@@ -5995,6 +6000,11 @@ entity
 	"unlocked_sentence" "0"
 	"unlocked_sound" "0"
 	"wait" "2"
+	connections
+	{
+		"OnPressed" "buy_zeusSpendMoneyFromPlayer0-1"
+		"OnPressed" "clientfunctionCommandgive weapon_taser; say Zeus added to inventory0-1"
+	}
 	solid
 	{
 		"id" "13390"
@@ -6251,6 +6261,148 @@ entity
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 		"logicalpos" "[0 5000]"
+	}
+}
+entity
+{
+	"id" "13689"
+	"classname" "game_player_equip"
+	"weapon_nothing" "0"
+	"origin" "562.645 283.954 73"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 6000]"
+	}
+}
+entity
+{
+	"id" "13706"
+	"classname" "trigger_multiple"
+	"origin" "545.5 257.5 73"
+	"spawnflags" "4097"
+	"StartDisabled" "0"
+	"wait" "1"
+	connections
+	{
+		"OnStartTouch" "clientfunctionCommandmp_drop_knife_enable 1; give weapon_knife; drop0-1"
+	}
+	solid
+	{
+		"id" "13697"
+		side
+		{
+			"id" "5966"
+			"plane" "(507 295 81) (584 295 81) (584 220 81)"
+			"material" "TOOLS/TOOLSTRIGGER"
+			"uaxis" "[1 0 0 60] 0.25"
+			"vaxis" "[0 -1 0 -28] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "5965"
+			"plane" "(507 220 65) (584 220 65) (584 295 65)"
+			"material" "TOOLS/TOOLSTRIGGER"
+			"uaxis" "[1 0 0 60] 0.25"
+			"vaxis" "[0 -1 0 -28] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "5964"
+			"plane" "(507 295 81) (507 220 81) (507 220 65)"
+			"material" "TOOLS/TOOLSTRIGGER"
+			"uaxis" "[0 1 0 28] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "5963"
+			"plane" "(584 295 65) (584 220 65) (584 220 81)"
+			"material" "TOOLS/TOOLSTRIGGER"
+			"uaxis" "[0 1 0 28] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "5962"
+			"plane" "(584 295 81) (507 295 81) (507 295 65)"
+			"material" "TOOLS/TOOLSTRIGGER"
+			"uaxis" "[1 0 0 60] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "5961"
+			"plane" "(584 220 65) (507 220 65) (507 220 81)"
+			"material" "TOOLS/TOOLSTRIGGER"
+			"uaxis" "[1 0 0 60] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		editor
+		{
+			"color" "220 30 220"
+			"visgroupshown" "1"
+			"visgroupautoshown" "1"
+		}
+	}
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 7000]"
+	}
+}
+entity
+{
+	"id" "13719"
+	"classname" "game_money"
+	"AwardText" "Knife added to Inventory"
+	"Money" "400"
+	"targetname" "buy_knife"
+	"origin" "470 733 73"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 7500]"
+	}
+}
+entity
+{
+	"id" "13801"
+	"classname" "game_money"
+	"AwardText" "Zeus added to Inventory"
+	"Money" "800"
+	"targetname" "buy_zeus"
+	"origin" "638 731 73"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 7500]"
 	}
 }
 entity
@@ -7292,6 +7444,7 @@ entity
 		"OnMapSpawn" "clientfunctionCommandsv_enablebunnyhopping 1; sv_autobunnyhopping 1; sv_staminamax 0; sv_staminajumpcost 0; sv_staminalandcost 0; sv_staminarecoveryrate 0; sv_airaccelerate 2000; sv_accelerate_use_weapon_speed 0; sv_maxvelocity 3500; say BHOP Enabled!1-1"
 		"OnMapSpawn" "clientfunctionCommandsay Welcome to Assassin V0.1!0-1"
 		"OnMapSpawn" "clientfunctionCommandmp_roundtime 60; mp_warmup_end; mp_freezetime 00-1"
+		"OnMapSpawn" "clientfunctionCommandmp_startmoney 5000-1"
 	}
 	"origin" "592 256 192"
 	editor
