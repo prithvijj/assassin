@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "8075"
-	"mapversion" "329"
+	"mapversion" "379"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "329"
+	"mapversion" "379"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -5888,8 +5888,7 @@ entity
 	"wait" "2"
 	connections
 	{
-		"OnPressed" "buy_knifeSpendMoneyFromPlayer0-1"
-		"OnPressed" "clientfunctionCommandgive weapon_knife; say Knife has been added0-1"
+		"OnPressed" "money_counterGetValue0-1"
 	}
 	solid
 	{
@@ -6002,8 +6001,7 @@ entity
 	"wait" "2"
 	connections
 	{
-		"OnPressed" "buy_zeusSpendMoneyFromPlayer0-1"
-		"OnPressed" "clientfunctionCommandgive weapon_taser; say Zeus added to inventory0-1"
+		"OnPressed" "money_counter_1GetValue0-1"
 	}
 	solid
 	{
@@ -6378,7 +6376,7 @@ entity
 	"id" "13719"
 	"classname" "game_money"
 	"AwardText" "Knife added to Inventory"
-	"Money" "400"
+	"Money" "500"
 	"targetname" "buy_knife"
 	"origin" "470 733 73"
 	editor
@@ -6394,9 +6392,315 @@ entity
 	"id" "13801"
 	"classname" "game_money"
 	"AwardText" "Zeus added to Inventory"
-	"Money" "800"
+	"Money" "500"
 	"targetname" "buy_zeus"
 	"origin" "638 731 73"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 7500]"
+	}
+}
+entity
+{
+	"id" "13840"
+	"classname" "logic_compare"
+	"CompareValue" "500"
+	"InitialValue" "0"
+	"targetname" "money_compare"
+	connections
+	{
+		"OnEqualTo" "money_relayTrigger0-1"
+		"OnGreaterThan" "money_relayTrigger0-1"
+		"OnLessThan" "money_relay_insufficientTrigger0-1"
+	}
+	"origin" "498 696 73"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 8000]"
+	}
+}
+entity
+{
+	"id" "13849"
+	"classname" "math_counter"
+	"max" "1000"
+	"min" "0"
+	"StartDisabled" "0"
+	"startvalue" "500"
+	"targetname" "money_counter"
+	connections
+	{
+		"OnGetValue" "money_compareSetValueCompare0-1"
+	}
+	"origin" "520 696 73"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 8500]"
+	}
+}
+entity
+{
+	"id" "13929"
+	"classname" "logic_relay"
+	"spawnflags" "0"
+	"StartDisabled" "0"
+	"targetname" "money_relay"
+	connections
+	{
+		"OnTrigger" "clientfunctionCommandsay triggeredd0-1"
+		"OnTrigger" "clientfunctionCommandgive weapon_knife; say Knife has been added0-1"
+		"OnTrigger" "buy_knifeSpendMoneyFromPlayer0-1"
+		"OnTrigger" "money_counterSubtract5000-1"
+		"OnTrigger" "money_counter_1Subtract5000-1"
+	}
+	"origin" "479 696 73"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 9500]"
+	}
+}
+entity
+{
+	"id" "14079"
+	"classname" "logic_relay"
+	"spawnflags" "0"
+	"StartDisabled" "0"
+	"targetname" "money_relay_insufficient"
+	connections
+	{
+		"OnTrigger" "clientfunctionCommandsay Insufficient Funds0-1"
+	}
+	"origin" "547.255 734.838 73"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 10000]"
+	}
+}
+entity
+{
+	"id" "14126"
+	"classname" "math_counter"
+	"max" "1000"
+	"min" "0"
+	"StartDisabled" "0"
+	"startvalue" "500"
+	"targetname" "money_counter_1"
+	connections
+	{
+		"OnGetValue" "money_compare_1SetValueCompare0-1"
+	}
+	"origin" "630 694 73"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 8500]"
+	}
+}
+entity
+{
+	"id" "14138"
+	"classname" "logic_compare"
+	"CompareValue" "500"
+	"InitialValue" "0"
+	"targetname" "money_compare_1"
+	connections
+	{
+		"OnEqualTo" "money_relay_1Trigger0-1"
+		"OnGreaterThan" "money_relay_1Trigger0-1"
+		"OnLessThan" "money_relay_insufficientTrigger0-1"
+	}
+	"origin" "610 693 73"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 8000]"
+	}
+}
+entity
+{
+	"id" "14148"
+	"classname" "logic_relay"
+	"spawnflags" "0"
+	"StartDisabled" "0"
+	"targetname" "money_relay_1"
+	connections
+	{
+		"OnTrigger" "money_counter_1Subtract5000-1"
+		"OnTrigger" "buy_zeusSpendMoneyFromPlayer0-1"
+		"OnTrigger" "clientfunctionCommandgive weapon_taser; say Zeus added to inventory0-1"
+		"OnTrigger" "money_counterSubtract5000-1"
+	}
+	"origin" "591 692 73"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 9500]"
+	}
+}
+entity
+{
+	"id" "14244"
+	"classname" "func_button"
+	"disablereceiveshadows" "0"
+	"fademaxdist" "0"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"health" "0"
+	"lip" "0"
+	"locked_sentence" "0"
+	"locked_sound" "0"
+	"min_use_angle" "0.8"
+	"movedir" "0 271 0"
+	"origin" "787 893.5 123"
+	"renderamt" "255"
+	"rendercolor" "255 255 255"
+	"renderfx" "0"
+	"rendermode" "0"
+	"sounds" "10"
+	"spawnflags" "17408"
+	"speed" "5"
+	"unlocked_sentence" "0"
+	"unlocked_sound" "0"
+	"wait" "2"
+	connections
+	{
+		"OnPressed" "money_relay_add_500Trigger0-1"
+	}
+	solid
+	{
+		"id" "14245"
+		side
+		{
+			"id" "5978"
+			"plane" "(783 895 128) (791 895 128) (791 892 128)"
+			"material" "DEV/DEV_MEASUREGENERIC01B"
+			"uaxis" "[1 0 0 -4] 0.25"
+			"vaxis" "[0 -1 0 59.5591] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "5977"
+			"plane" "(783 892 118) (791 892 118) (791 895 118)"
+			"material" "DEV/DEV_MEASUREGENERIC01B"
+			"uaxis" "[1 0 0 -4] 0.25"
+			"vaxis" "[0 -1 0 59.5591] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "5976"
+			"plane" "(783 895 128) (783 892 128) (783 892 118)"
+			"material" "DEV/DEV_MEASUREGENERIC01B"
+			"uaxis" "[0 1 0 -59.5591] 0.25"
+			"vaxis" "[0 0 -1 44] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "5975"
+			"plane" "(791 895 118) (791 892 118) (791 892 128)"
+			"material" "DEV/DEV_MEASUREGENERIC01B"
+			"uaxis" "[0 1 0 -59.5591] 0.25"
+			"vaxis" "[0 0 -1 44] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "5974"
+			"plane" "(791 895 128) (783 895 128) (783 895 118)"
+			"material" "DEV/DEV_MEASUREGENERIC01B"
+			"uaxis" "[1 0 0 -4] 0.25"
+			"vaxis" "[0 0 -1 44] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "5973"
+			"plane" "(791 892 118) (783 892 118) (783 892 128)"
+			"material" "DEV/DEV_MEASUREGENERIC01B"
+			"uaxis" "[1 0 0 -4] 0.25"
+			"vaxis" "[0 0 -1 44] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		editor
+		{
+			"color" "220 30 220"
+			"visgroupshown" "1"
+			"visgroupautoshown" "1"
+		}
+	}
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2000]"
+	}
+}
+entity
+{
+	"id" "14257"
+	"classname" "logic_relay"
+	"StartDisabled" "0"
+	"targetname" "money_relay_add_500"
+	connections
+	{
+		"OnTrigger" "money_counter_1Add5000-1"
+		"OnTrigger" "money_counterAdd5000-1"
+		"OnTrigger" "clientfunctionCommandsay Money has been added!0-1"
+		"OnTrigger" "buy_500AddMoneyPlayer0-1"
+	}
+	"origin" "809.45 887 115.457"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 10500]"
+	}
+}
+entity
+{
+	"id" "14300"
+	"classname" "game_money"
+	"AwardText" "Money added to Inventory"
+	"Money" "500"
+	"targetname" "buy_500"
+	"origin" "767 882 73"
 	editor
 	{
 		"color" "220 30 220"
